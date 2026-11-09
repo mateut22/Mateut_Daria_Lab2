@@ -1,8 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using Mateut_Daria_Lab2.Data;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("Mateut_Daria_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Mateut_Daria_Lab2Context' not found.");
 
 builder.Services.AddDbContext<Mateut_Daria_Lab2Context>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Mateut_Daria_Lab2Context>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -21,6 +25,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
