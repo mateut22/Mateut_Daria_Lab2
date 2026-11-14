@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Mateut_Daria_Lab2.Pages.BookPages;
 
-public class EditModel : BookCategoriesPageModel
+[Authorize(Roles = "Admin")]
+
+    public class EditModel : BookCategoriesPageModel
 {
     private readonly Mateut_Daria_Lab2Context _context;
 

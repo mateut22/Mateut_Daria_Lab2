@@ -2,9 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Mateut_Daria_Lab2.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace Mateut_Daria_Lab2.Pages.BookPages;
 
+[Authorize(Roles = "Admin")]
 public class DetailsModel : PageModel
 {
     private readonly Mateut_Daria_Lab2Context _context;
